@@ -37,7 +37,7 @@ function NavLogin(props) {
         setToken(localStorage.getItem('token'))
         let email = localStorage.getItem('user')
         if (token && logado == 0 && email) {
-            axios.get("http://localhost:8080/cadastro-cliente/getByEmail/" + email)
+            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
                 .then((response) => {
                     setId(response.data.id_Cliente)
                     
@@ -96,7 +96,7 @@ function NavLogin(props) {
             getUser()
         },[])
         const getUser = () =>{
-            axios.get("http://localhost:8080/cadastro-cliente/" + id, config)
+            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/" + id, config)
                 .then(response => {
                     setUser(response.data)
                     setDataNascimento(response.data.dataNascimento)
@@ -111,13 +111,13 @@ function NavLogin(props) {
         
         let email = localStorage.getItem('user')
         if (email) {
-            axios.get('http://localhost:8080/cadastro-cliente/getByEmail/' + email)
+            axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email)
                 .then((response) => {
-                    window.location.href = "http://localhost:3000/dashboard/" + response.data.id_Cliente
+                    window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + response.data.id_Cliente
                     localStorage.setItem('defaultIndex', "index")
                 })
         } else {
-            window.location.href = "http://localhost:3000/login"
+            window.location.href = "http://"+window.location.hostname+":3000/login"
         }
 
     }

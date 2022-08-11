@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 
 function Login(props) {
 
-    const URL = 'http://localhost:8080/'
+    const URL = 'http://'+window.location.hostname+':8080/'
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailRec, setEmailRec] = useState('')
@@ -28,7 +28,7 @@ function Login(props) {
             axios.get(URL+"cadastro-cliente/getByEmail/"+email, config)
                 .then((response) => {
                     let {id_Cliente} = response.data
-                    window.location.href = "http://localhost:3000/dashboard/" + id_Cliente
+                    window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + id_Cliente
                 })
                 .catch((error) => { console.log(error) })
 
@@ -45,10 +45,10 @@ function Login(props) {
                 const config = {
                     headers: { Authorization: `Bearer ${token}` }
                 };
-                axios.get("http://localhost:8080/cadastro-cliente/getByEmail/"+email, config)
+                axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/"+email, config)
                     .then((response) => {
                         let {id_Cliente} = response.data
-                        window.location.href = "http://localhost:3000/dashboard/" + id_Cliente
+                        window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + id_Cliente
                     })
                     .catch((error) => { console.log(error) })
             })
@@ -70,7 +70,7 @@ function Login(props) {
                 confirmButtonText: 'fechar'
               })
             localStorage.setItem('defaultIndex', JSON.parse(1))
-            window.location.href = "http://localhost:3000/login"
+            window.location.href = "http://"+window.location.hostname+":3000/login"
         })
         .catch((error) => { 
             console.log(error) 
@@ -80,7 +80,7 @@ function Login(props) {
                 icon: 'success',
                 confirmButtonText: 'fechar'
               })
-            window.location.href = "http://localhost:3000/login"
+            window.location.href = "http://"+window.location.hostname+":3000/login"
         })
         
     }

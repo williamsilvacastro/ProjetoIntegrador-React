@@ -16,7 +16,7 @@ function ListarProdutos() {
     }, [])
 
     const getProducts = () => {
-        // axios.get('http://localhost:3001/produtos').then((response) => {
+        // axios.get('http://'+window.location.hostname+':3001/produtos').then((response) => {
         //     setProducts(response.data)
         // })
         setProducts(ListaDeProdutos)

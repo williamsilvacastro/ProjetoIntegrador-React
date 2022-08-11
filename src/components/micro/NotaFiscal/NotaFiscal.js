@@ -22,7 +22,7 @@ function NotaFiscal(props) {
       "id": id
     }
     console.log(pedido)
-    axios.post("http://localhost:8080/Pedido/gerarNf", pedido)
+    axios.post("http://"+window.location.hostname+":8080/Pedido/gerarNf", pedido)
       .then((response) => {
         setNotaFiscal(response.data)
         
@@ -35,7 +35,7 @@ function NotaFiscal(props) {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.get("http://localhost:8080/Pedido/" + id, config)
+    axios.get("http://"+window.location.hostname+":8080/Pedido/" + id, config)
       .then((response) => {
         setEndereco(response.data.endereco)
       })

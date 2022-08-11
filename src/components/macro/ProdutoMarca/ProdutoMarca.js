@@ -17,7 +17,7 @@ function ProdutoMarca(props){
     }, [])
 
     const getProdutoMarca = () => {
-        axios.get(`http://localhost:8080/Card/Marca/${id}`)
+        axios.get(`http://${window.location.hostname}:8080/Card/Marca/${id}`)
         .then((response) => {
             setProdutoMarca(response.data)
         })

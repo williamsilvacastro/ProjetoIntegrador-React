@@ -10,7 +10,7 @@ function FazerLogin(props) {
         password: props.password
     }
     
-    const chave = axios.post('http://localhost:8080/login', dados)
+    const chave = axios.post('http://'+window.location.hostname+':8080/login', dados)
         .then(res => {
             console.log('resposta')
             console.log(res)

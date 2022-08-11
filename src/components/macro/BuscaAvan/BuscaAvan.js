@@ -6,7 +6,7 @@ import SelectPrato from '../../micro/Forms/Select/SelectPrato';
 import SelectCategoria from '../../micro/Forms/Select/SelectCategoria';
 import SelectFamilia from '../../micro/Forms/Select/SelectFamilia';
 import BotaoBuscaAvan from '../../micro/BotaoBuscaAvan/BotaoBuscaAvan';
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import IrPara from "./IrPara";
 
 
@@ -32,7 +32,7 @@ function BuscaAvan(props) {
         setValues({ ...values, [name]: value })
 
 
-        setUrl('/buscaAvancada/' + values.marca + '/' + values.familia + '/' + values.marca + '/' + values.marca + '/')
+        setUrl('/buscaAvancada/' + values.categoria + '/' + values.marca + '/' + values.familia + '/' + values.prato + '/')
 
 
         console.log(final)
@@ -113,7 +113,7 @@ function BuscaAvan(props) {
                                 <div class="col-12 d-flex flex-column align-items-center">
                                     <p className="busc-avanc"> Prato:</p>
                                     <div className='divSelect' >
-                                        <select className="selectBuscaAvancada" required name="familia" id="familia" onChange={onChange} >
+                                        <select className="selectBuscaAvancada" required name="prato" id="prato" onChange={onChange} >
                                             <option value="-1" onChange={onChange} selected>Selecione</option>
                                             <option value="1" onChange={onChange}>Aves</option>
                                             <option value="2" onChange={onChange}>Carnes vermelhas</option>
@@ -139,7 +139,7 @@ function BuscaAvan(props) {
                                     <div className='divSelect' >
 
 
-                                        <select className="selectBuscaAvancada" required name="familia" id="familia" onChange={onChange} >
+                                        <select className="selectBuscaAvancada" required name="categoria" id="categoria" onChange={onChange} >
                                             <option value="-1" onChange={onChange} selected>Selecione</option>
                                             <option value="1" onChange={onChange}>Lager</option>
                                             <option value="2" onChange={onChange}>Weiss</option>

@@ -132,7 +132,7 @@ const Checkout = (props) => {
         </InputGroup>
     </>
     useEffect(() => {
-        axios.get('http://localhost:8080/parcelas')
+        axios.get('http://'+window.location.hostname+':8080/parcelas')
             .then((response) => {
                 setParcelas(response.data)
             })
@@ -142,10 +142,10 @@ const Checkout = (props) => {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.get('http://localhost:8080/cadastro-cliente/getByEmail/' + email, config)
+            axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email, config)
                 .then((response) => {
                     setCliente(response.data)
-                    axios.get('http://localhost:8080/clienteEndereco/cliente/' + response.data.id_Cliente)
+                    axios.get('http://'+window.location.hostname+':8080/clienteEndereco/cliente/' + response.data.id_Cliente)
                         .then((response) => {
                             setEnderecos(response.data)
                             if (response.data.length == 0) {
@@ -167,7 +167,7 @@ const Checkout = (props) => {
                             })
 
                         })
-                    axios.get("http://localhost:8080/clienteCartao/cliente/" + response.data.id_Cliente)
+                    axios.get("http://"+window.location.hostname+":8080/clienteCartao/cliente/" + response.data.id_Cliente)
                         .then((response) => {
 
                             response.data.map((item) => {
@@ -184,14 +184,14 @@ const Checkout = (props) => {
                 })
 
         } else {
-            window.location.href = "http://localhost:3000/login"
+            window.location.href = "http://"+window.location.hostname+":3000/login"
         }
 
         let cart = ((localStorage.getItem("cart")
             ? JSON.parse(localStorage.getItem("cart"))
             : []))
         if (cart.length != [].length) {
-            axios.post('http://localhost:8080/Card/multi', cart)
+            axios.post('http://'+window.location.hostname+':8080/Card/multi', cart)
                 .then(response => {
                     setCards(response.data)
                     let acumulador = 0
@@ -214,7 +214,7 @@ const Checkout = (props) => {
                     }
                 })
         } else {
-            window.location.href = "http://localhost:3000/home"
+            window.location.href = "http://"+window.location.hostname+":3000/home"
         }
 
 
@@ -229,12 +229,12 @@ const Checkout = (props) => {
     }
     function MeusEnderecos() {
         localStorage.setItem('defaultIndex', JSON.stringify(3))
-        window.location.href = "http://localhost:3000/dashboard/" + cliente.id_Cliente
+        window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + cliente.id_Cliente
     }
 
     function meusCartoes() {
         localStorage.setItem('defaultIndex', JSON.stringify(4))
-        window.location.href = "http://localhost:3000/dashboard/" + cliente.id_Cliente
+        window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + cliente.id_Cliente
     }
 
     const Finalizar = (event) => {
@@ -348,7 +348,7 @@ const Checkout = (props) => {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        axios.post('http://localhost:8080/finalizarPedido', { "pedido": pedido, "arrayItens": arrayItens }, config)
+        axios.post('http://'+window.location.hostname+':8080/finalizarPedido', { "pedido": pedido, "arrayItens": arrayItens }, config)
             .then((response) => {
                 setNumeroPedido(response.data.pedido)
                 localStorage.setItem('cart', JSON.stringify([]))
@@ -367,7 +367,7 @@ const Checkout = (props) => {
                         "principal": true
                     }
                     console.log(novoCartao)
-                    axios.post('http://localhost:8080/clienteCartao/create', novoCartao)
+                    axios.post('http://'+window.location.hostname+':8080/clienteCartao/create', novoCartao)
                         .then((response) => {
                             console.log(response.data)
                             setCarregando(false)
@@ -472,7 +472,7 @@ const Checkout = (props) => {
                                             <a className="linkMudarEnderecoEntrega" onClick={() => { MeusEnderecos() }} >Mudar endereço de entrega</a>
 
                                             <br /><br />
-                                            <div className="">
+                                            {/* <div className="">
                                                 <p><Icon className="icone-resumo" name="money bill alternate outline" /> <b>Endereço Cobrança</b></p>
                                                 <hr />
                                                 <ul className="">
@@ -482,8 +482,8 @@ const Checkout = (props) => {
                                                     <li className="">{enderecoCobranca.cidade} - {enderecoCobranca.estado}</li>
                                                 </ul>
 
-                                            </div> 
-                                            <a className="linkMudarEnderecoEntrega" onClick={() => { MeusEnderecos() }} >Mudar endereço de cobrança</a>
+                                            </div> */}
+                                            {/* <a className="linkMudarEnderecoEntrega" onClick={() => { MeusEnderecos() }} >Mudar endereço de cobrança</a> */}
 
                                             <br />
                                         </ul>

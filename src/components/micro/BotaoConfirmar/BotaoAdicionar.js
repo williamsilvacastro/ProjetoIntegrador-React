@@ -15,7 +15,7 @@ function BotaoConfirmar(props) {
         count++;
       }
     })
-    axios.get('http://localhost:8080/Estoque/' + props.id)
+    axios.get('http://'+window.location.hostname+':8080/Estoque/' + props.id)
       .then((response) => {
         if (response.data.quantidade >= count + 1) {
           let cartList = localStorage.getItem("cart")
@@ -47,7 +47,7 @@ function BotaoConfirmar(props) {
         count++;
       }
     })
-    axios.get('http://localhost:8080/Estoque/' + props.id)
+    axios.get('http://'+window.location.hostname+':8080/Estoque/' + props.id)
       .then((response) => {
         if (response.data.quantidade >= count + props.qtd) {
           let cartList = localStorage.getItem("cart")
@@ -60,7 +60,7 @@ function BotaoConfirmar(props) {
           let cartString = JSON.stringify(cartList)
           localStorage.setItem("cart", cartString)
           localStorage.setItem('qtyCart', JSON.stringify(cartList.length))
-          window.location.href = "http://localhost:3000/carrinho"
+          window.location.href = "http://"+window.location.hostname+":3000/carrinho"
         } else {
           Swal.fire({
             title: 'Erro!',

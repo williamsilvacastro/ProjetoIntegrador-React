@@ -21,7 +21,7 @@ function ItemListaEndereco(props) {
 
 
     const excluir = (idend) => {
-        axios.delete("http://localhost:8080/clienteEndereco/DeleteEndereco/" + (id||props.id_cliente) + "/" + idend)
+        axios.delete("http://"+window.location.hostname+":8080/clienteEndereco/DeleteEndereco/" + (id||props.id_cliente) + "/" + idend)
             .then((response) => {
                 props.att(response)
             })
@@ -61,21 +61,21 @@ function ItemListaEndereco(props) {
             "ponto_referencia": "",
             "destinatario": destinatario != "" ? destinatario : null
         }
-        axios.put("http://localhost:8080/Endereco/" + idend, endereco)
+        axios.put("http://"+window.location.hostname+":8080/Endereco/" + idend, endereco)
             .then((response) => {
                 props.att(response)
 
             })
     }
     const tornarPrincipal = (idend) => {
-        axios.put("http://localhost:8080/clienteEndereco/EndPrincipal/" + (id||props.id_cliente) + "/" + idend)
+        axios.put("http://"+window.location.hostname+":8080/clienteEndereco/EndPrincipal/" + (id||props.id_cliente) + "/" + idend)
             .then((response) => {
                 props.att(response)
             })
     }
 
     const tornarEntrega = (idend) => {
-        axios.put("http://localhost:8080/clienteEndereco/EndEntrega/" + (id||props.id_cliente) + "/" + idend)
+        axios.put("http://"+window.location.hostname+":8080/clienteEndereco/EndEntrega/" + (id||props.id_cliente) + "/" + idend)
             .then((response) => {
                 props.att(response)
             })

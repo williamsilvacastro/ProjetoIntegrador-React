@@ -21,7 +21,7 @@ function FiltroProdut(props){
 
 
         useEffect(() =>{
-            axios.get("http://localhost:8080/Marca")
+            axios.get("http://"+window.location.hostname+":8080/Marca")
             .then((response) => {
                    setMarca(response.data)
             })

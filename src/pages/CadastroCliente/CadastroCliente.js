@@ -14,7 +14,7 @@ import InputUnform from '../../components/micro/Forms/FormDefault/FormUnform/Inp
 
     const Cadastrar = (event) => {
         event.preventDefault();
-        axios.post("http://localhost:8080/cadastroCliente/salvar", {
+        axios.post("http://"+window.location.hostname+":8080/cadastroCliente/salvar", {
             nome: nome,
             cpf: cpf,
             dataNascimento: dataNascimento,
@@ -24,7 +24,7 @@ import InputUnform from '../../components/micro/Forms/FormDefault/FormUnform/Inp
             confPassword: confPassword
         })
             .then((response) => {
-                window.location.href = "http://localhost:3000/"
+                window.location.href = "http://"+window.location.hostname+":3000/"
             })
             .catch((error) => console.log(error))
 

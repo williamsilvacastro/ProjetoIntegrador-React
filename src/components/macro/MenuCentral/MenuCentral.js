@@ -19,7 +19,7 @@ import Cards from 'react-credit-cards'
 const deslogar = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  window.location.href = 'http://localhost:3000/home'
+  window.location.href = 'http://'+window.location.hostname+':3000/home'
 }
 
 
@@ -70,7 +70,7 @@ const Panes = ({ user, dataNascimento }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.put('http://localhost:8080/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
+    axios.put('http://'+window.location.hostname+':8080/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
       .then(response => {
         Swal.fire({
           title: 'Sucesso!',
@@ -129,7 +129,7 @@ const Panes = ({ user, dataNascimento }) => {
       "enderecoPrincipal": false,
       "enderecoEntrega": false
     }
-    axios.post("http://localhost:8080/clienteEndereco/create", endereco)
+    axios.post("http://"+window.location.hostname+":8080/clienteEndereco/create", endereco)
       .then((response) => {
         MeusEnderecos()
         Swal.fire({
@@ -158,7 +158,7 @@ const Panes = ({ user, dataNascimento }) => {
       },
       "principal": checkboxCartao
     }
-    axios.post("http://localhost:8080/clienteCartao/create", novoCartao)
+    axios.post("http://"+window.location.hostname+":8080/clienteCartao/create", novoCartao)
       .then(response => {
 
         meusCartoes()
@@ -173,7 +173,7 @@ const Panes = ({ user, dataNascimento }) => {
       headers: { Authorization: `Bearer ${token}` }
     };
     if (senha == senhaSec) {
-      axios.put("http://localhost:8080/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
+      axios.put("http://"+window.location.hostname+":8080/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
         .then(response => {
           Swal.fire({
             title: 'Sucesso!',
@@ -199,12 +199,12 @@ const Panes = ({ user, dataNascimento }) => {
 
   function MeusEnderecos() {
     localStorage.setItem('defaultIndex', JSON.stringify(3))
-    window.location.href = "http://localhost:3000/dashboard/" +id
+    window.location.href = "http://"+window.location.hostname+":3000/dashboard/" +id
 }
 
 function meusCartoes() {
     localStorage.setItem('defaultIndex', JSON.stringify(4))
-    window.location.href = "http://localhost:3000/dashboard/" +id
+    window.location.href = "http://"+window.location.hostname+":3000/dashboard/" +id
 }
 
 
@@ -216,16 +216,16 @@ function meusCartoes() {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.get("http://localhost:8080/Pedido/cliente/" + id, config)
+    axios.get("http://"+window.location.hostname+":8080/Pedido/cliente/" + id, config)
       .then((response) => {
         setPedidos(response.data);
       })
-    axios.get("http://localhost:8080/clienteEndereco/cliente/" + id)
+    axios.get("http://"+window.location.hostname+":8080/clienteEndereco/cliente/" + id)
       .then((response) => {
         setEnderecos(response.data);
 
       })
-    axios.get("http://localhost:8080/clienteCartao/cliente/" + id)
+    axios.get("http://"+window.location.hostname+":8080/clienteCartao/cliente/" + id)
       .then((response) => {
         setCartoes(response.data);
         response.data.map((item) => {
@@ -777,7 +777,7 @@ function verMais() {
 const TabExampleVerticalTabular = (props) => {
   if (localStorage.getItem("comprando")) {
     localStorage.removeItem("comprando");
-    window.location.href = "http://localhost:3000/carrinho"
+    window.location.href = "http://"+window.location.hostname+":3000/carrinho"
   }
   if (JSON.parse(localStorage.getItem("defaultIndex")) == 1) {
     Swal.fire({

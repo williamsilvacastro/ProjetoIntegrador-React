@@ -14,7 +14,7 @@ function ItemMeuPedido(props) {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        axios.get("http://localhost:8080/preco/"+id_prod, config)
+        axios.get("http://"+window.location.hostname+":8080/preco/"+id_prod, config)
         .then((response)=>{
             setPrice(response.data.valor_preco)
         })

@@ -44,7 +44,7 @@ function MeuPedido(props) {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        axios.get("http://localhost:8080/item_pedido/findBypedido/"+pedido.id, config)
+        axios.get("http://"+window.location.hostname+":8080/item_pedido/findBypedido/"+pedido.id, config)
         .then((response)=>{
             setItens(response.data)
          

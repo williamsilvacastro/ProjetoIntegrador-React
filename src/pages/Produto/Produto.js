@@ -36,13 +36,13 @@ function Produto(props) {
 
     const params = useParams(":pesq")
     const pesq = params.pesq
-    const URL = 'http://localhost:8080/produtos/'
+    const URL = 'http://'+window.location.hostname+':8080/produtos/'
     const final = URL + params.pesq
 
-    const URLPreco = 'http://localhost:8080/preco/'
+    const URLPreco = 'http://'+window.location.hostname+':8080/preco/'
     const precoFinal = URLPreco + params.pesq
 
-    const URLCard = 'http://localhost:8080/Card/'
+    const URLCard = 'http://'+window.location.hostname+':8080/Card/'
     const cardFinal = URLCard + params.pesq
 
     // verificar estoque

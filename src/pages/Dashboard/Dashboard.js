@@ -21,7 +21,7 @@ function Dashboard() {
         getUser()
     },[])
     const getUser = () =>{
-        axios.get("http://localhost:8080/cadastro-cliente/" + id, config)
+        axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/" + id, config)
             .then(response => {
                 setUser(response.data)
                 setDataNascimento(response.data.dataNascimento)

@@ -7,7 +7,7 @@ import Marca from '../../../pages/Marca/Marca'
 function CardMarca(props) {
 
     
-    const link = 'http://localhost:3000/produtos/' + props.id
+    const link = 'http://'+window.location.hostname+':3000/produtos/' + props.id
     return (
         <>
             <br />

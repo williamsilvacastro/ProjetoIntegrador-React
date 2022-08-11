@@ -27,7 +27,7 @@ function PedidoFinalizado(props) {
 
 
     
-    const ULRPedidoFinalizado = "http://localhost:8080/Pedido/" + params.pesq
+    const ULRPedidoFinalizado = "http://"+window.location.hostname+":8080/Pedido/" + params.pesq
 
     useEffect(() => {
         const fetchProds = async () => {
@@ -49,9 +49,9 @@ function PedidoFinalizado(props) {
     function MeusPedidos(){
         localStorage.setItem('defaultIndex', JSON.stringify(2))
         let email = localStorage.getItem('user')
-        axios.get('http://localhost:8080/cadastro-cliente/getByEmail/' + email)
+        axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email)
                 .then((response) => {
-                    window.location.href="http://localhost:3000/dashboard/"+response.data.id_Cliente
+                    window.location.href="http://"+window.location.hostname+":3000/dashboard/"+response.data.id_Cliente
                 })
     }
     useEffect(()=>{

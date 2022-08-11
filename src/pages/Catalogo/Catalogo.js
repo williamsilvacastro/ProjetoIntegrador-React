@@ -17,7 +17,7 @@ function Catalogo(props) {
     const [loading, setLoading] = useState(false)
     const [paginaAtual, setPaginaAtual] = useState(1)
     const [prodsPorPagina, setProdsPorPagina] = useState(15)
-    const final = 'http://localhost:8080/Card/todosProdutos'
+    const final = 'http://'+window.location.hostname+':8080/Card/todosProdutos'
 
     
   
@@ -62,7 +62,7 @@ function Catalogo(props) {
     // filtro
   
     function getFiltrar(e){
-        axios.get('http://localhost:8080/Card/Marca/' + e.target.value)
+        axios.get('http://'+window.location.hostname+':8080/Card/Marca/' + e.target.value)
         .then(response => {
             setProdutos(response.data)
         }) 

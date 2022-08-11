@@ -12,7 +12,7 @@ import Swal from 'sweetalert2'
 const deslogar = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  window.location.href = 'http://localhost:3000/home'
+  window.location.href = 'http://'+window.location.hostname+':3000/home'
 }
 
 
@@ -47,7 +47,7 @@ const Panes = ({ user, dataNascimento }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.put('http://localhost:8080/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
+    axios.put('http://'+window.location.hostname+':8080/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
       .then(response => {
         Swal.fire({
           title: 'Sucesso!',
@@ -74,7 +74,7 @@ const Panes = ({ user, dataNascimento }) => {
       headers: { Authorization: `Bearer ${token}` }
     };
     if (senha == senhaSec) {
-      axios.put("http://localhost:8080/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
+      axios.put("http://"+window.location.hostname+":8080/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
         .then(response => {
           Swal.fire({
             title: 'Sucesso!',
@@ -109,7 +109,7 @@ const Panes = ({ user, dataNascimento }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.get("http://localhost:8080/Pedido/cliente/" + id, config)
+    axios.get("http://"+window.location.hostname+":8080/Pedido/cliente/" + id, config)
       .then((response) => {
         setPedidos(response.data);
 

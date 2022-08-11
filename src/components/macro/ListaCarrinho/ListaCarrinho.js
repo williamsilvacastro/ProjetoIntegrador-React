@@ -73,15 +73,15 @@ function ListaCarrinho(props) {
                 const config = {
                     headers: { Authorization: `Bearer ${token}` }
                 };
-                axios.get('http://localhost:8080/cadastro-cliente/getByEmail/' + email, config)
+                axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email, config)
                     .then((response) => {
                         const id_cliente = response.data.id_Cliente
-                        axios.get('http://localhost:8080/clienteEndereco/cliente/' + response.data.id_Cliente)
+                        axios.get('http://'+window.location.hostname+':8080/clienteEndereco/cliente/' + response.data.id_Cliente)
                             .then((response) => {
 
                                 if (response.data.length == 0) {
                                     localStorage.setItem('defaultIndex', JSON.stringify(3))
-                                    window.location.href = "http://localhost:3000/dashboard/" + id_cliente
+                                    window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + id_cliente
                                     Swal.fire({
                                         icon: 'error',
                                         title: 'Não é possível prosseguir',
@@ -89,7 +89,7 @@ function ListaCarrinho(props) {
                                         confirmButtonText: 'fechar'
                                     });
                                 }else{
-                                    window.location.href = "http://localhost:3000/checkout"
+                                    window.location.href = "http://"+window.location.hostname+":3000/checkout"
                                 }
 
 
@@ -98,7 +98,7 @@ function ListaCarrinho(props) {
                     })
             } else {
                 localStorage.setItem("comprando", "comprando")
-                window.location.href = "http://localhost:3000/login"
+                window.location.href = "http://"+window.location.hostname+":3000/login"
             }
 
         }
@@ -106,7 +106,7 @@ function ListaCarrinho(props) {
 
 
         } else {
-            window.location.href = "http://localhost:3000/login"
+            window.location.href = "http://"+window.location.hostname+":3000/login"
         }
 
     }
@@ -116,7 +116,7 @@ function ListaCarrinho(props) {
             ? JSON.parse(localStorage.getItem("cart"))
             : []))
         if (cart != []) {
-            axios.post('http://localhost:8080/Card/multi', cart)
+            axios.post('http://'+window.location.hostname+':8080/Card/multi', cart)
                 .then(response => {
                     setCards(response.data)
                     let acumulador = 0

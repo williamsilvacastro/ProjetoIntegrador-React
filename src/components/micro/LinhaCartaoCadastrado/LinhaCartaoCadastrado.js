@@ -8,14 +8,14 @@ function LinhaCartaoCadastrado(props) {
     let id_cartao = props.cartao.clienteCartaoKey.cartao.id_Cartao
     
     const tornarPrincipal = ()=>{
-        axios.put(`http://localhost:8080/clienteCartao/tornarPrincipal/${id}/${id_cartao}`)
+        axios.put(`http://${window.location.hostname}:8080/clienteCartao/tornarPrincipal/${id}/${id_cartao}`)
             .then(response=>{
                 props.att(response)
             })
     }
 
     const excluir = ()=>{
-        axios.delete(`http://localhost:8080/clienteCartao/delete/${id}/${id_cartao}`)
+        axios.delete(`http://${window.location.hostname}:8080/clienteCartao/delete/${id}/${id_cartao}`)
             .then(response=>{
                 props.att(response)
             })

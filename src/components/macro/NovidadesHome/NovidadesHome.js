@@ -15,7 +15,7 @@ function NovidadesHome(props) {
     }, [])
 
     const getNovidades = () => {
-        axios.get(`http://localhost:8080/Card/novidades`)
+        axios.get(`http://${window.location.hostname}:8080/Card/novidades`)
             .then((response) => {
                 setNovidades(response.data)
                 
@@ -32,7 +32,7 @@ function NovidadesHome(props) {
 
             // }).then(() =>{
             //     console.log(ids)
-            //     axios.get(`http://localhost:8080/Card/multi`,ids).
+            //     axios.get(`http://'+window.location.hostname+':8080/Card/multi`,ids).
             //     then((response) =>{
             //         console.log(response.data)
             //     })

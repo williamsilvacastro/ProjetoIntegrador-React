@@ -78,7 +78,7 @@ function ProdutoCarrinho(props) {
 
 
         setNumero(count)
-        axios.get('http://localhost:8080/Estoque/' + props.prod.id_produto)
+        axios.get('http://'+window.location.hostname+':8080/Estoque/' + props.prod.id_produto)
             .then((response) => {
                 setEstoque(response.data.quantidade)
             })

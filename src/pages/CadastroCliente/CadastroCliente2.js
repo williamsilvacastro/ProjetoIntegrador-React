@@ -49,10 +49,10 @@ function CadastroCliente(props) {
         setCarregando(true)
         event.preventDefault()
         if (validarEntradas()) {
-            axios.get("http://localhost:8080/cadastro-cliente/getByEmail/" + email)
+            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
                 .then((response) => {
                     if (response.data == '' && response.status == 200) {
-                        axios.post("http://localhost:8080/cadastroCliente/salvar", {
+                        axios.post("http://"+window.location.hostname+":8080/cadastroCliente/salvar", {
                             "nome": nome,
                             "cpf": cpf,
                             "dataNascimento": new Date(dataNascimento),
@@ -62,7 +62,7 @@ function CadastroCliente(props) {
                         })
                             .then((response) => {
                                 adicionarEndereco(response.data.id_Cliente)
-                                axios.post("http://localhost:8080/login", { "email": email, "password": password })
+                                axios.post("http://"+window.location.hostname+":8080/login", { "email": email, "password": password })
                                     .then((response) => {
 
                                         let token = response.data;
@@ -71,11 +71,11 @@ function CadastroCliente(props) {
                                         const config = {
                                             headers: { Authorization: `Bearer ${token}` }
                                         };
-                                        axios.get("http://localhost:8080/cadastro-cliente/getByEmail/" + email, config)
+                                        axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email, config)
                                             .then((response) => {
                                                 let { id_Cliente } = response.data
                                                 setCarregando(false)
-                                                window.location.href = "http://localhost:3000/dashboard/" + id_Cliente
+                                                window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + id_Cliente
                                             })
                                             .catch((error) => { setCarregando(false) })
 
@@ -138,7 +138,7 @@ function CadastroCliente(props) {
             "enderecoPrincipal": false,
             "enderecoEntrega": false
         }
-        axios.post("http://localhost:8080/clienteEndereco/create", endereco)
+        axios.post("http://"+window.location.hostname+":8080/clienteEndereco/create", endereco)
             .then((response) => {
                 console.log(response.data)
 

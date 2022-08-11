@@ -16,7 +16,7 @@ const initialValue = {
   assunto: '',
   mensagem: ''
 }
-const URL = 'http://localhost:8080/'
+const URL = 'http://'+window.location.hostname+':8080/'
 
 function FormularioContato(props) {
 
@@ -59,7 +59,7 @@ function FormularioContato(props) {
     setToken(localStorage.getItem('token'))
     let email = localStorage.getItem('user')
     if (token && logado == 0 && email) {
-        axios.get("http://localhost:8080/cadastro-cliente/getByEmail/" + email)
+        axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
             .then((response) => {
               setUsuario(response.data)
               setNome(response.data.nome)

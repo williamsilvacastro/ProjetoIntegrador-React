@@ -13,7 +13,7 @@ function DestaquesHome(props) {
     }, [])
 
     const getDestaques = () => {
-        axios.get(`http://localhost:8080/Card/destaques`)
+        axios.get(`http://${window.location.hostname}:8080/Card/destaques`)
             .then((response) => {
                 setDestaques(response.data)
                 
