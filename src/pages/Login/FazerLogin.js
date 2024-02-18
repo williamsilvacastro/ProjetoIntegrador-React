@@ -1,6 +1,8 @@
 
 import React from "react";
-
+import properties from '../../properties';
+import axios from 'axios'
+var backendUrl = properties.backendUrl;
 
 
 function FazerLogin(props) {
@@ -10,7 +12,7 @@ function FazerLogin(props) {
         password: props.password
     }
     
-    const chave = axios.post('http://'+window.location.hostname+':8080/login', dados)
+    const chave = axios.post(backendUrl+'/login', dados)
         .then(res => {
             console.log('resposta')
             console.log(res)

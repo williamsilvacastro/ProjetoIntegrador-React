@@ -8,7 +8,8 @@ import Produtos from '../../../pages/Produtos/Produtos'
 import axios from 'axios';
 
 import FormCheckInput from 'react-bootstrap/esm/FormCheckInput'
-
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
@@ -21,7 +22,7 @@ function FiltroProdut(props){
 
 
         useEffect(() =>{
-            axios.get("http://"+window.location.hostname+":8080/Marca")
+            axios.get(backendUrl+"/Marca")
             .then((response) => {
                    setMarca(response.data)
             })

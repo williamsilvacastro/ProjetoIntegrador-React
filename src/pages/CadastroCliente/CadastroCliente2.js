@@ -9,6 +9,8 @@ import BotaoConfirmar from '../../components/micro/BotaoConfirmar/BotaoConfirmar
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom'
 import { Formik, Field } from 'formik';
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 function CadastroCliente(props) {
@@ -42,17 +44,18 @@ function CadastroCliente(props) {
     const [estado, setEstado] = useState('')
     const [carregando, setCarregando] = useState(false)
     const { id } = useParams()
-
+    
+    
 
     const Cadastrar = (event) => {
 
         setCarregando(true)
         event.preventDefault()
         if (validarEntradas()) {
-            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
+            axios.get(backendUrl+"/cadastro-cliente/getByEmail/" + email)
                 .then((response) => {
                     if (response.data == '' && response.status == 200) {
-                        axios.post("http://"+window.location.hostname+":8080/cadastroCliente/salvar", {
+                        axios.post(backendUrl+"/cadastroCliente/salvar", {
                             "nome": nome,
                             "cpf": cpf,
                             "dataNascimento": new Date(dataNascimento),
@@ -62,7 +65,7 @@ function CadastroCliente(props) {
                         })
                             .then((response) => {
                                 adicionarEndereco(response.data.id_Cliente)
-                                axios.post("http://"+window.location.hostname+":8080/login", { "email": email, "password": password })
+                                axios.post(backendUrl+"/login", { "email": email, "password": password })
                                     .then((response) => {
 
                                         let token = response.data;
@@ -71,7 +74,7 @@ function CadastroCliente(props) {
                                         const config = {
                                             headers: { Authorization: `Bearer ${token}` }
                                         };
-                                        axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email, config)
+                                        axios.get(backendUrl+"/cadastro-cliente/getByEmail/" + email, config)
                                             .then((response) => {
                                                 let { id_Cliente } = response.data
                                                 setCarregando(false)
@@ -138,7 +141,7 @@ function CadastroCliente(props) {
             "enderecoPrincipal": false,
             "enderecoEntrega": false
         }
-        axios.post("http://"+window.location.hostname+":8080/clienteEndereco/create", endereco)
+        axios.post(backendUrl+"/clienteEndereco/create", endereco)
             .then((response) => {
                 console.log(response.data)
 

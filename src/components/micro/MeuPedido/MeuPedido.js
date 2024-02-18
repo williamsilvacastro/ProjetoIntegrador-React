@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import { Container, Tab } from 'semantic-ui-react'
 import ItemMeuPedido from '../ItemMeuPedido/ItemMeuPedido'
-
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 
 function MeuPedido(props) {
@@ -44,7 +45,7 @@ function MeuPedido(props) {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        axios.get("http://"+window.location.hostname+":8080/item_pedido/findBypedido/"+pedido.id, config)
+        axios.get(backendUrl+"/item_pedido/findBypedido/"+pedido.id, config)
         .then((response)=>{
             setItens(response.data)
          

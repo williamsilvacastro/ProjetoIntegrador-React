@@ -6,6 +6,8 @@ import ListarProdutos from '../../components/macro/ListarProdutos/ListarProdutos
 import axios from "axios";
 import MarcaItem from '../../components/micro/MarcaItem/MarcaItem';
 import ProdutoMarca from '../../components/macro/ProdutoMarca/ProdutoMarca';
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 function Produtos() {
 
@@ -14,7 +16,7 @@ function Produtos() {
 
     useEffect(() => {
 
-        axios.get(`http://${window.location.hostname}:8080/Marca/${id}`)
+        axios.get(backendUrl+`/Marca/${id}`)
             .then((response) => {
 
                 setProdutos(response.data)

@@ -5,8 +5,8 @@ import axios from 'axios'
 
 import MenuCentral from '../../components/macro/MenuCentral/MenuCentral'
 import TituloDash from '../../components/micro/Titulo/TituloDash'
-
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 function Dashboard() {
@@ -21,7 +21,7 @@ function Dashboard() {
         getUser()
     },[])
     const getUser = () =>{
-        axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/" + id, config)
+        axios.get(backendUrl+"/cadastro-cliente/" + id, config)
             .then(response => {
                 setUser(response.data)
                 setDataNascimento(response.data.dataNascimento)

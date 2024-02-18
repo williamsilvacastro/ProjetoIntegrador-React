@@ -12,6 +12,8 @@ import InputHeader from '../../micro/Forms/Input/InputHeader';
 import axios from 'axios'
 import TituloConta from '../../micro/TituloConta/TituloConta';
 import { useParams } from "react-router-dom";
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
@@ -53,7 +55,7 @@ function NavPrincipal(props) {
                 const config = {
                     headers: { Authorization: `Bearer ${token}` }
                 };
-                axios.get("http://"+window.location.hostname+":8080/cadastroCliente/validarToken", config)
+                axios.get(backendUrl+"/cadastroCliente/validarToken", config)
                     .then(response => {
                         console.log(response.data)
                     })
@@ -74,7 +76,7 @@ function NavPrincipal(props) {
         setToken(localStorage.getItem('token'))
         let email = localStorage.getItem('user')
         if (token && logado == 0 && email) {
-            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
+            axios.get(backendUrl+"/cadastro-cliente/getByEmail/" + email)
                 .then((response) => {
                     setId(response.data.id_Cliente)
                     setUser(response.data)
@@ -116,7 +118,7 @@ function NavPrincipal(props) {
 
         let email = localStorage.getItem('user')
         if (email) {
-            axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email)
+            axios.get(backendUrl+'/cadastro-cliente/getByEmail/' + email)
                 .then((response) => {
                     window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + response.data.id_Cliente
                     localStorage.setItem('defaultIndex', JSON.stringify(2))

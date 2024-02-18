@@ -8,7 +8,8 @@ import ProdutosBusca from '../../components/macro/BuscaParam/ProdutosBusca'
 import FiltroProdut from '../../components/micro/FiltroProdu/FiltroProdut'
 import { useParams } from 'react-router-dom'
 import { Row , Col, Collapse } from 'react-bootstrap'
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 function Catalogo(props) {
@@ -17,7 +18,7 @@ function Catalogo(props) {
     const [loading, setLoading] = useState(false)
     const [paginaAtual, setPaginaAtual] = useState(1)
     const [prodsPorPagina, setProdsPorPagina] = useState(15)
-    const final = 'http://'+window.location.hostname+':8080/Card/todosProdutos'
+    const final = backendUrl+'/Card/todosProdutos'
 
     
   
@@ -62,7 +63,7 @@ function Catalogo(props) {
     // filtro
   
     function getFiltrar(e){
-        axios.get('http://'+window.location.hostname+':8080/Card/Marca/' + e.target.value)
+        axios.get(backendUrl+'/Card/Marca/' + e.target.value)
         .then(response => {
             setProdutos(response.data)
         }) 

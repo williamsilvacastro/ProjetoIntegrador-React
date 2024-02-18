@@ -6,6 +6,9 @@ import BotaoQtd from '../../micro/BotaoQtd/BotaoQtd';
 import axios from 'axios'
 import InputMask from "react-input-mask";
 import Swal from 'sweetalert2'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
+
 function ProdutoCarrinho(props) {
 
     const [estoque, setEstoque] = useState(50)
@@ -64,6 +67,7 @@ function ProdutoCarrinho(props) {
 
 
     useEffect(() => {
+        
         let cart = ((localStorage.getItem("cart")
             ? JSON.parse(localStorage.getItem("cart"))
             : []))
@@ -78,7 +82,7 @@ function ProdutoCarrinho(props) {
 
 
         setNumero(count)
-        axios.get('http://'+window.location.hostname+':8080/Estoque/' + props.prod.id_produto)
+        axios.get(backendUrl+'/Estoque/' + props.prod.id_produto)
             .then((response) => {
                 setEstoque(response.data.quantidade)
             })

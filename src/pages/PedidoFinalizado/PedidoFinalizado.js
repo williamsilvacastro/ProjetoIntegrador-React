@@ -12,6 +12,8 @@ import { Icon } from 'semantic-ui-react'
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import Barco from "../../assets/imgs/teste/barco.gif"
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 function PedidoFinalizado(props) {
     const params = useParams(":pesq")
@@ -27,7 +29,7 @@ function PedidoFinalizado(props) {
 
 
     
-    const ULRPedidoFinalizado = "http://"+window.location.hostname+":8080/Pedido/" + params.pesq
+    const ULRPedidoFinalizado = backendUrl+"/Pedido/" + params.pesq
 
     useEffect(() => {
         const fetchProds = async () => {
@@ -49,7 +51,7 @@ function PedidoFinalizado(props) {
     function MeusPedidos(){
         localStorage.setItem('defaultIndex', JSON.stringify(2))
         let email = localStorage.getItem('user')
-        axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email)
+        axios.get(backendUrl+'/cadastro-cliente/getByEmail/' + email)
                 .then((response) => {
                     window.location.href="http://"+window.location.hostname+":3000/dashboard/"+response.data.id_Cliente
                 })

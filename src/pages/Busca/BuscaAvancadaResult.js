@@ -4,7 +4,8 @@ import BotaoPags from '../../components/micro/BotaoPags/BotaoPags'
 
 import axios from 'axios'
 import ProdutosBusca from '../../components/macro/BuscaParam/ProdutosBusca'
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 function BuscaAvancadaResult(props) {
 
@@ -13,7 +14,7 @@ function BuscaAvancadaResult(props) {
     const [loading, setLoading] = useState(false)
     const [paginaAtual, setPaginaAtual] = useState(1)
     const [prodsPorPagina, setProdsPorPagina] = useState(15)
-    const URL = 'http://'+window.location.hostname+':8080/Card/'
+    const URL = backendUrl+'/Card/'
     const final = URL + props.pesq
 
 

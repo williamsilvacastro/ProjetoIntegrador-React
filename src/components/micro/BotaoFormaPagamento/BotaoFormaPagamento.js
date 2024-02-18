@@ -7,7 +7,8 @@ import InputMask from "react-input-mask";
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 const deslogar = () => {
   localStorage.removeItem('token')
@@ -40,6 +41,7 @@ const Panes = ({ user, dataNascimento }) => {
   const teste1 = (("" + dataNascimento).slice(0, 10).replaceAll("-", "/"))
   const data1 = new Date(teste1).toLocaleDateString()
   const [muda, setMuda] = useState('')
+  
 
   const alterarDados = (event) => {
     event.preventDefault()
@@ -47,7 +49,7 @@ const Panes = ({ user, dataNascimento }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.put('http://'+window.location.hostname+':8080/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
+    axios.put(backendUrl+'/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
       .then(response => {
         Swal.fire({
           title: 'Sucesso!',
@@ -74,7 +76,7 @@ const Panes = ({ user, dataNascimento }) => {
       headers: { Authorization: `Bearer ${token}` }
     };
     if (senha == senhaSec) {
-      axios.put("http://"+window.location.hostname+":8080/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
+      axios.put(backendUrl+"/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
         .then(response => {
           Swal.fire({
             title: 'Sucesso!',
@@ -109,7 +111,7 @@ const Panes = ({ user, dataNascimento }) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.get("http://"+window.location.hostname+":8080/Pedido/cliente/" + id, config)
+    axios.get(backendUrl+"/Pedido/cliente/" + id, config)
       .then((response) => {
         setPedidos(response.data);
 

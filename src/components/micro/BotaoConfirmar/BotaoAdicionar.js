@@ -3,6 +3,8 @@ import { Icon } from 'semantic-ui-react';
 import './BotaoConfirmar.css'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 function BotaoConfirmar(props) {
   const addToCart = () => {
@@ -15,7 +17,7 @@ function BotaoConfirmar(props) {
         count++;
       }
     })
-    axios.get('http://'+window.location.hostname+':8080/Estoque/' + props.id)
+    axios.get(backendUrl+'/Estoque/' + props.id)
       .then((response) => {
         if (response.data.quantidade >= count + 1) {
           let cartList = localStorage.getItem("cart")
@@ -47,7 +49,7 @@ function BotaoConfirmar(props) {
         count++;
       }
     })
-    axios.get('http://'+window.location.hostname+':8080/Estoque/' + props.id)
+    axios.get(backendUrl+'/Estoque/' + props.id)
       .then((response) => {
         if (response.data.quantidade >= count + props.qtd) {
           let cartList = localStorage.getItem("cart")

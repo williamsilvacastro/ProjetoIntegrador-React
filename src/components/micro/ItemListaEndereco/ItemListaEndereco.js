@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { Formik, Field } from 'formik';
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
@@ -18,10 +20,11 @@ function ItemListaEndereco(props) {
     const [destinatario, setDestinatario] = useState(null)
     const { id } = useParams()
     let endereco = props.endereco.clienteEnderecoKey.endereco
+    
 
 
     const excluir = (idend) => {
-        axios.delete("http://"+window.location.hostname+":8080/clienteEndereco/DeleteEndereco/" + (id||props.id_cliente) + "/" + idend)
+        axios.delete(backendUrl+"/clienteEndereco/DeleteEndereco/" + (id||props.id_cliente) + "/" + idend)
             .then((response) => {
                 props.att(response)
             })
@@ -61,21 +64,21 @@ function ItemListaEndereco(props) {
             "ponto_referencia": "",
             "destinatario": destinatario != "" ? destinatario : null
         }
-        axios.put("http://"+window.location.hostname+":8080/Endereco/" + idend, endereco)
+        axios.put(backendUrl+"/Endereco/" + idend, endereco)
             .then((response) => {
                 props.att(response)
 
             })
     }
     const tornarPrincipal = (idend) => {
-        axios.put("http://"+window.location.hostname+":8080/clienteEndereco/EndPrincipal/" + (id||props.id_cliente) + "/" + idend)
+        axios.put(backendUrl+"/clienteEndereco/EndPrincipal/" + (id||props.id_cliente) + "/" + idend)
             .then((response) => {
                 props.att(response)
             })
     }
 
     const tornarEntrega = (idend) => {
-        axios.put("http://"+window.location.hostname+":8080/clienteEndereco/EndEntrega/" + (id||props.id_cliente) + "/" + idend)
+        axios.put(backendUrl+"/clienteEndereco/EndEntrega/" + (id||props.id_cliente) + "/" + idend)
             .then((response) => {
                 props.att(response)
             })

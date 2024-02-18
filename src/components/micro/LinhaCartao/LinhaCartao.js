@@ -2,6 +2,8 @@ import { Icon } from 'semantic-ui-react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 function LinhaCartao(props) {
     let { id } = useParams()
@@ -21,7 +23,7 @@ function LinhaCartao(props) {
     let id_cartao = props.cartao.clienteCartaoKey.cartao.id_Cartao
     const excluir = () => {
 
-        axios.delete(`http://${window.location.hostname}:8080/clienteCartao/delete/${id}/${id_cartao}`)
+        axios.delete(backendUrl+`/clienteCartao/delete/${id}/${id_cartao}`)
             .then(response => {
                 props.att(response)
             })

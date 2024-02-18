@@ -6,13 +6,15 @@ import {Container, Row, Col, NavLink } from 'react-bootstrap'
 import "./Marca.css"
 import ListaMarcas from '../../ListaMarcas'
 import { Icon } from 'semantic-ui-react';
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 function Marca() {
     const [marcas, setMarcas] = useState([])
     
     useEffect(() => {
         setMarcas(ListaMarcas)
-        axios.get('http://'+window.location.hostname+':8080/Marca')
+        axios.get(backendUrl+'/Marca')
         .then((response) => {
            
             setMarcas(response.data)

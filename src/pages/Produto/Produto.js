@@ -16,6 +16,8 @@ import ListarProdutos from '../../components/macro/ListarProdutos/ListarProdutos
 import NovidadesHome from '../../components/macro/NovidadesHome/NovidadesHome';
 import Swal from 'sweetalert2'
 import { createSemanticDiagnosticsBuilderProgram } from 'typescript';
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 function Produto(props) {
     const [produto, setProduto] = useState([])
@@ -36,13 +38,13 @@ function Produto(props) {
 
     const params = useParams(":pesq")
     const pesq = params.pesq
-    const URL = 'http://'+window.location.hostname+':8080/produtos/'
+    const URL = backendUrl+'/produtos/'
     const final = URL + params.pesq
 
-    const URLPreco = 'http://'+window.location.hostname+':8080/preco/'
+    const URLPreco = backendUrl+'/preco/'
     const precoFinal = URLPreco + params.pesq
 
-    const URLCard = 'http://'+window.location.hostname+':8080/Card/'
+    const URLCard = backendUrl+'/Card/'
     const cardFinal = URLCard + params.pesq
 
     // verificar estoque

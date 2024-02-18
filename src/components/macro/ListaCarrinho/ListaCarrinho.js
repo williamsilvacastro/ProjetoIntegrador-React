@@ -7,6 +7,8 @@ import InputMask from "react-input-mask";
 import ProdutoCarrinho from './ProdutoCarrinho'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 function ListaCarrinho(props) {
     const [subtotal, setSubtotal] = useState(0)
@@ -59,6 +61,7 @@ function ListaCarrinho(props) {
         }
     }
     const checkout = (event) => {
+        
         if ((localStorage.getItem("cart") ? false : true) || localStorage.getItem("cart") == '[]' || localStorage.getItem("cart") == []) {
             Swal.fire({
                 title: 'Carrinho Vazio! ',
@@ -73,10 +76,10 @@ function ListaCarrinho(props) {
                 const config = {
                     headers: { Authorization: `Bearer ${token}` }
                 };
-                axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email, config)
+                axios.get(backendUrl+'/cadastro-cliente/getByEmail/' + email, config)
                     .then((response) => {
                         const id_cliente = response.data.id_Cliente
-                        axios.get('http://'+window.location.hostname+':8080/clienteEndereco/cliente/' + response.data.id_Cliente)
+                        axios.get(backendUrl+'/clienteEndereco/cliente/' + response.data.id_Cliente)
                             .then((response) => {
 
                                 if (response.data.length == 0) {
@@ -112,11 +115,12 @@ function ListaCarrinho(props) {
     }
 
     useEffect(() => {
+        
         let cart = ((localStorage.getItem("cart")
             ? JSON.parse(localStorage.getItem("cart"))
             : []))
         if (cart != []) {
-            axios.post('http://'+window.location.hostname+':8080/Card/multi', cart)
+            axios.post(backendUrl+'/Card/multi', cart)
                 .then(response => {
                     setCards(response.data)
                     let acumulador = 0

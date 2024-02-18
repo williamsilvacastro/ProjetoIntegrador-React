@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import ListarProdutos from '../ListarProdutos/ListarProdutos'
 import Produto from '../../Produto/Produto'
 import axios from 'axios'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 
 function NovidadesHome(props) {
+    
 
     const [novidades, setNovidades] = useState([])
     const [preco1, setPreco1] = useState([])
@@ -15,7 +18,7 @@ function NovidadesHome(props) {
     }, [])
 
     const getNovidades = () => {
-        axios.get(`http://${window.location.hostname}:8080/Card/novidades`)
+        axios.get(backendUrl+`/Card/novidades`)
             .then((response) => {
                 setNovidades(response.data)
                 

@@ -1,6 +1,8 @@
 import { Icon } from 'semantic-ui-react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 function LinhaCartaoCadastrado(props) {
     let {id} = useParams()
@@ -8,14 +10,14 @@ function LinhaCartaoCadastrado(props) {
     let id_cartao = props.cartao.clienteCartaoKey.cartao.id_Cartao
     
     const tornarPrincipal = ()=>{
-        axios.put(`http://${window.location.hostname}:8080/clienteCartao/tornarPrincipal/${id}/${id_cartao}`)
+        axios.put(backendUrl+`/clienteCartao/tornarPrincipal/${id}/${id_cartao}`)
             .then(response=>{
                 props.att(response)
             })
     }
 
     const excluir = ()=>{
-        axios.delete(`http://${window.location.hostname}:8080/clienteCartao/delete/${id}/${id_cartao}`)
+        axios.delete(backendUrl+`/clienteCartao/delete/${id}/${id_cartao}`)
             .then(response=>{
                 props.att(response)
             })

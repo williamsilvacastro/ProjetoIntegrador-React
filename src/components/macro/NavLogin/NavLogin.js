@@ -10,7 +10,8 @@ import Carrinho from '../../../assets/imgs/header/carrinho.png'
 import Badge from 'react-bootstrap/Badge'
 import InputHeader from '../../micro/Forms/Input/InputHeader';
 import axios from 'axios'
-
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 function estadoInicial() {
     return { busca: '' }
 }
@@ -37,7 +38,7 @@ function NavLogin(props) {
         setToken(localStorage.getItem('token'))
         let email = localStorage.getItem('user')
         if (token && logado == 0 && email) {
-            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
+            axios.get(backendUrl+"/cadastro-cliente/getByEmail/" + email)
                 .then((response) => {
                     setId(response.data.id_Cliente)
                     
@@ -96,7 +97,7 @@ function NavLogin(props) {
             getUser()
         },[])
         const getUser = () =>{
-            axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/" + id, config)
+            axios.get(backendUrl+"/cadastro-cliente/" + id, config)
                 .then(response => {
                     setUser(response.data)
                     setDataNascimento(response.data.dataNascimento)
@@ -111,7 +112,7 @@ function NavLogin(props) {
         
         let email = localStorage.getItem('user')
         if (email) {
-            axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email)
+            axios.get(backendUrl+'/cadastro-cliente/getByEmail/' + email)
                 .then((response) => {
                     window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + response.data.id_Cliente
                     localStorage.setItem('defaultIndex', "index")

@@ -14,7 +14,8 @@ import { Formik, Field } from 'formik';
 import LinhaCartao from '../../micro/LinhaCartao/LinhaCartao'
 import ListaCartoes from '../../micro/ListaCartoes/ListaCartoes'
 import Cards from 'react-credit-cards'
-
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 const deslogar = () => {
   localStorage.removeItem('token')
@@ -65,12 +66,13 @@ const Panes = ({ user, dataNascimento }) => {
 
 
   const alterarDados = (event) => {
+    
     event.preventDefault()
     const token = localStorage.getItem('token')
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.put('http://'+window.location.hostname+':8080/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
+    axios.put(backendUrl+'/cadastro-cliente/' + id, { "nome": nomeChanged, "telefone": telefoneChanged, "dataNascimento": dataNas }, config)
       .then(response => {
         Swal.fire({
           title: 'Sucesso!',
@@ -105,6 +107,7 @@ const Panes = ({ user, dataNascimento }) => {
   }
 
   const adicionarEndereco = () => {
+    
     let endereco =
     {
       "clienteEnderecoKey":
@@ -129,7 +132,7 @@ const Panes = ({ user, dataNascimento }) => {
       "enderecoPrincipal": false,
       "enderecoEntrega": false
     }
-    axios.post("http://"+window.location.hostname+":8080/clienteEndereco/create", endereco)
+    axios.post(backendUrl+"/clienteEndereco/create", endereco)
       .then((response) => {
         MeusEnderecos()
         Swal.fire({
@@ -158,7 +161,7 @@ const Panes = ({ user, dataNascimento }) => {
       },
       "principal": checkboxCartao
     }
-    axios.post("http://"+window.location.hostname+":8080/clienteCartao/create", novoCartao)
+    axios.post(backendUrl+"/clienteCartao/create", novoCartao)
       .then(response => {
 
         meusCartoes()
@@ -173,7 +176,7 @@ const Panes = ({ user, dataNascimento }) => {
       headers: { Authorization: `Bearer ${token}` }
     };
     if (senha == senhaSec) {
-      axios.put("http://"+window.location.hostname+":8080/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
+      axios.put(backendUrl+"/cadastroCliente/alterarSenha/" + id, { "password": senha }, config)
         .then(response => {
           Swal.fire({
             title: 'Sucesso!',
@@ -216,16 +219,16 @@ function meusCartoes() {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.get("http://"+window.location.hostname+":8080/Pedido/cliente/" + id, config)
+    axios.get(backendUrl+"/Pedido/cliente/" + id, config)
       .then((response) => {
         setPedidos(response.data);
       })
-    axios.get("http://"+window.location.hostname+":8080/clienteEndereco/cliente/" + id)
+    axios.get(backendUrl+"/clienteEndereco/cliente/" + id)
       .then((response) => {
         setEnderecos(response.data);
 
       })
-    axios.get("http://"+window.location.hostname+":8080/clienteCartao/cliente/" + id)
+    axios.get(backendUrl+"/clienteCartao/cliente/" + id)
       .then((response) => {
         setCartoes(response.data);
         response.data.map((item) => {

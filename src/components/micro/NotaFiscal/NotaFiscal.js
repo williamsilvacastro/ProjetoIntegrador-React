@@ -7,6 +7,8 @@ import { Table } from 'react-bootstrap'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 function NotaFiscal(props) {
 
@@ -22,7 +24,7 @@ function NotaFiscal(props) {
       "id": id
     }
     console.log(pedido)
-    axios.post("http://"+window.location.hostname+":8080/Pedido/gerarNf", pedido)
+    axios.post(backendUrl+"/Pedido/gerarNf", pedido)
       .then((response) => {
         setNotaFiscal(response.data)
         
@@ -35,7 +37,7 @@ function NotaFiscal(props) {
     const config = {
       headers: { Authorization: `Bearer ${token}` }
     };
-    axios.get("http://"+window.location.hostname+":8080/Pedido/" + id, config)
+    axios.get(backendUrl+"/Pedido/" + id, config)
       .then((response) => {
         setEndereco(response.data.endereco)
       })

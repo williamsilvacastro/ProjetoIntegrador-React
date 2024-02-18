@@ -19,7 +19,8 @@ import Swal from 'sweetalert2'
 import Boleto from '../../assets/imgs/boleto/concessionariacomlegenda.png'
 
 import ListaEnderecos from "../../components/micro/ListaEnderecos/ListaEnderecos"
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
@@ -132,7 +133,7 @@ const Checkout = (props) => {
         </InputGroup>
     </>
     useEffect(() => {
-        axios.get('http://'+window.location.hostname+':8080/parcelas')
+        axios.get(backendUrl+'/parcelas')
             .then((response) => {
                 setParcelas(response.data)
             })
@@ -142,10 +143,10 @@ const Checkout = (props) => {
             const config = {
                 headers: { Authorization: `Bearer ${token}` }
             };
-            axios.get('http://'+window.location.hostname+':8080/cadastro-cliente/getByEmail/' + email, config)
+            axios.get(backendUrl+'/cadastro-cliente/getByEmail/' + email, config)
                 .then((response) => {
                     setCliente(response.data)
-                    axios.get('http://'+window.location.hostname+':8080/clienteEndereco/cliente/' + response.data.id_Cliente)
+                    axios.get(backendUrl+'/clienteEndereco/cliente/' + response.data.id_Cliente)
                         .then((response) => {
                             setEnderecos(response.data)
                             if (response.data.length == 0) {
@@ -167,7 +168,7 @@ const Checkout = (props) => {
                             })
 
                         })
-                    axios.get("http://"+window.location.hostname+":8080/clienteCartao/cliente/" + response.data.id_Cliente)
+                    axios.get(backendUrl+"/clienteCartao/cliente/" + response.data.id_Cliente)
                         .then((response) => {
 
                             response.data.map((item) => {
@@ -191,7 +192,7 @@ const Checkout = (props) => {
             ? JSON.parse(localStorage.getItem("cart"))
             : []))
         if (cart.length != [].length) {
-            axios.post('http://'+window.location.hostname+':8080/Card/multi', cart)
+            axios.post(backendUrl+'/Card/multi', cart)
                 .then(response => {
                     setCards(response.data)
                     let acumulador = 0
@@ -348,7 +349,7 @@ const Checkout = (props) => {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        axios.post('http://'+window.location.hostname+':8080/finalizarPedido', { "pedido": pedido, "arrayItens": arrayItens }, config)
+        axios.post(backendUrl+'/finalizarPedido', { "pedido": pedido, "arrayItens": arrayItens }, config)
             .then((response) => {
                 setNumeroPedido(response.data.pedido)
                 localStorage.setItem('cart', JSON.stringify([]))
@@ -367,7 +368,7 @@ const Checkout = (props) => {
                         "principal": true
                     }
                     console.log(novoCartao)
-                    axios.post('http://'+window.location.hostname+':8080/clienteCartao/create', novoCartao)
+                    axios.post(backendUrl+'/clienteCartao/create', novoCartao)
                         .then((response) => {
                             console.log(response.data)
                             setCarregando(false)

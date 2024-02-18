@@ -8,13 +8,14 @@ import BotaoConfirmar from '../../components/micro/BotaoConfirmar/BotaoConfirmar
 import { Button, Modal } from 'react-bootstrap'
 import InputMask from "react-input-mask";
 import InputUnform from '../../components/micro/Forms/FormDefault/FormUnform/Input'
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
     const Cadastrar = (event) => {
         event.preventDefault();
-        axios.post("http://"+window.location.hostname+":8080/cadastroCliente/salvar", {
+        axios.post(backendUrl+"/cadastroCliente/salvar", {
             nome: nome,
             cpf: cpf,
             dataNascimento: dataNascimento,

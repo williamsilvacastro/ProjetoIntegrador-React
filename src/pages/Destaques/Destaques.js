@@ -6,7 +6,8 @@ import './Destaques.css'
 import axios from 'axios'
 import ProdutosBusca from '../../components/macro/BuscaParam/ProdutosBusca'
 import FiltroProdut from '../../components/micro/FiltroProdu/FiltroProdut'
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 function BuscaAvancadaResult(props) {
 
@@ -15,7 +16,7 @@ function BuscaAvancadaResult(props) {
     const [loading, setLoading] = useState(false)
     const [paginaAtual, setPaginaAtual] = useState(1)
     const [prodsPorPagina, setProdsPorPagina] = useState(15)
-    const final = 'http://'+window.location.hostname+':8080/Card/todosDestaques'
+    const final = backendUrl+'/Card/todosDestaques'
 
 
 
@@ -44,7 +45,7 @@ function BuscaAvancadaResult(props) {
         // filtro
   
         function getFiltrar(e){
-            axios.get('http://'+window.location.hostname+':8080/Card/Marca/' + e.target.value)
+            axios.get(backendUrl+'/Card/Marca/' + e.target.value)
             .then(response => {
                 setProdutos(response.data)
             }) 

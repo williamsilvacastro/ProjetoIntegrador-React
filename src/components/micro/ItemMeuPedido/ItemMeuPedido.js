@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
+import properties from '../../../properties';
+var backendUrl = properties.backendUrl;
 
 function ItemMeuPedido(props) {
     const [preco, setPrice] = useState(0)
@@ -14,7 +16,7 @@ function ItemMeuPedido(props) {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        axios.get("http://"+window.location.hostname+":8080/preco/"+id_prod, config)
+        axios.get(backendUrl+"/preco/"+id_prod, config)
         .then((response)=>{
             setPrice(response.data.valor_preco)
         })

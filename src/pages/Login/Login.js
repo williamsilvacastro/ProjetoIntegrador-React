@@ -5,13 +5,14 @@ import Input from "../../components/micro/Forms/Input/Input";
 import FormDefault from "../../components/micro/Forms/FormDefault/FormDefault";
 import axios from 'axios'
 import Swal from 'sweetalert2'
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
 function Login(props) {
 
-    const URL = 'http://'+window.location.hostname+':8080/'
+    const URL = backendUrl+'/'
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [emailRec, setEmailRec] = useState('')
@@ -45,7 +46,7 @@ function Login(props) {
                 const config = {
                     headers: { Authorization: `Bearer ${token}` }
                 };
-                axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/"+email, config)
+                axios.get(backendUrl+"/cadastro-cliente/getByEmail/"+email, config)
                     .then((response) => {
                         let {id_Cliente} = response.data
                         window.location.href = "http://"+window.location.hostname+":3000/dashboard/" + id_Cliente

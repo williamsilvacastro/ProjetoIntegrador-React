@@ -4,7 +4,8 @@ import { Modal, Button } from "react-bootstrap"
 import axios from 'axios'
 import { useHistory } from "react-router-dom"
 import Swal from 'sweetalert2'
-
+import properties from '../../properties';
+var backendUrl = properties.backendUrl;
 
 
 
@@ -16,7 +17,7 @@ const initialValue = {
   assunto: '',
   mensagem: ''
 }
-const URL = 'http://'+window.location.hostname+':8080/'
+const URL = backendUrl+'/'
 
 function FormularioContato(props) {
 
@@ -59,7 +60,7 @@ function FormularioContato(props) {
     setToken(localStorage.getItem('token'))
     let email = localStorage.getItem('user')
     if (token && logado == 0 && email) {
-        axios.get("http://"+window.location.hostname+":8080/cadastro-cliente/getByEmail/" + email)
+        axios.get(backendUrl+"/cadastro-cliente/getByEmail/" + email)
             .then((response) => {
               setUsuario(response.data)
               setNome(response.data.nome)
