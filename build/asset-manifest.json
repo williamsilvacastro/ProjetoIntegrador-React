@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1cb16d0c.css",
+    "main.js": "/static/js/main.685cf7a3.js",
+    "static/media/banner-2.png": "/static/media/banner-2.15b1282765680aff9996.png",
+    "static/media/banner-1.png": "/static/media/banner-1.2d2bbe502d671ff184a1.png",
+    "static/media/banner-3.png": "/static/media/banner-3.496ff8a22c92d2e4c049.png",
+    "static/media/madalena.jpg": "/static/media/madalena.54eabb71c57e31caad30.jpg",
+    "static/media/cerveja.png": "/static/media/cerveja.980b305c31c2ba97a0be.png",
+    "static/media/logo.png": "/static/media/logo.c3fb1d7c7193854d6b0f.png",
+    "static/media/barco.gif": "/static/media/barco.6983e12af6f7276dc18f.gif",
+    "static/media/ipa-bottle.png": "/static/media/ipa-bottle.00e241fe50cb50f7d3f6.png",
+    "static/media/caneca.gif": "/static/media/caneca.1bc158cb1736be1580ad.gif",
+    "static/media/canecapreta.gif": "/static/media/canecapreta.ba7cfe5366471f3a50b6.gif",
+    "static/media/telefone.png": "/static/media/telefone.f396b6208950a2d8f8af.png",
+    "static/media/nfe.png": "/static/media/nfe.45565dce2fa074c04950.png",
+    "static/media/carrinho.png": "/static/media/carrinho.864555c667b2b28e0a65.png",
+    "static/media/prato.gif": "/static/media/prato.63605c0df1bbed516e25.gif",
+    "static/media/barril.png": "/static/media/barril.35b3ca60279d0479629a.png",
+    "static/media/cervejas.png": "/static/media/cervejas.281ccdeffe7eeb2a731b.png",
+    "static/media/conta.png": "/static/media/conta.895bc2209b6373fe68a5.png",
+    "static/media/fale.png": "/static/media/fale.235d6497b4d8e216f328.png",
+    "index.html": "/index.html",
+    "main.1cb16d0c.css.map": "/static/css/main.1cb16d0c.css.map",
+    "main.685cf7a3.js.map": "/static/js/main.685cf7a3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1cb16d0c.css",
+    "static/js/main.685cf7a3.js"
+  ]
+}
