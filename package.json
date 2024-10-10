@@ -19,6 +19,7 @@
     "gerador-validador-cpf": "^5.0.2",
     "js-cookie": "^3.0.1",
     "node-correios": "^0.1.8",
+    "projeto-integrador-william": "file:",
     "react": "^16.14.0",
     "react-bootstrap": "^2.0.2",
     "react-credit-cards": "^0.8.3",

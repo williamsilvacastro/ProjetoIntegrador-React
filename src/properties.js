@@ -1,6 +1,7 @@
 const properties = {
-    backendUrl: "http://emp-app-env.eba-wjjpw6cs.us-east-2.elasticbeanstalk.com"
+    // backendUrl: ""
     // Adicione outras propriedades conforme necessário
+    backendUrl: "http://localhost:5000/devbrewbff"
   };
   
   export default properties;
